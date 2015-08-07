@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150807174027) do
   create_table "stocks", force: :cascade do |t|
     t.string   "ticker"
     t.string   "name"
+    t.string   "industry"
     t.float    "eps"
     t.float    "pe"
     t.float    "pbook"

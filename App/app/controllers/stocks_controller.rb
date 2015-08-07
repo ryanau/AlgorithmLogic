@@ -4,7 +4,7 @@ require 'HTTParty'
 
 
 class StocksController < ApplicationController
-	def work
+	def populate_data
 
     url = 'http://finance.yahoo.com/d/quotes.csv?s='
     connect = "&f="
@@ -42,13 +42,12 @@ class StocksController < ApplicationController
 	end
 
 	def index
-    if !Stock.find(1)
+    if !Stock.find_by(id: 1)
       make_dict
     end
-    if !Stock.find(1).pe
-      work
+    if !Stock.find_by(id: 1).pe
+      populate_data
     end
-
 		@stocks = Stock.all
 		render 'index'
 	end

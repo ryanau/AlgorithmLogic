@@ -130,6 +130,3 @@ DEPENDENCIES
   rails (= 4.2.3)
   sass-rails (~> 5.0)
   web-console (~> 2.0)
-
-BUNDLED WITH
-   1.10.5

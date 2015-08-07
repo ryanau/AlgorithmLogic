@@ -1,7 +1,9 @@
 <h1>Welcome</h1>
 <h3>Data</h3>
 <% @stocks.each do |stock| %>
+<p>Company Name: <%= stock.name %></p>
 <p>Ticker: <%= stock.ticker.upcase %></p>
+<p>Industry: <%= stock.industry %></p>
 <p>EPS: <%= stock.eps %></p>
 <p>PE: <%= stock.pe %></p>
 <p>Pbook: <%= stock.pbook %></p>

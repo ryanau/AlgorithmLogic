@@ -1,0 +1,18 @@
+<h1>Welcome</h1>
+<h3>Data</h3>
+<% @stocks.each do |stock| %>
+<p>Ticker: <%= stock.ticker.upcase %></p>
+<p>EPS: <%= stock.eps %></p>
+<p>PE: <%= stock.pe %></p>
+<p>Pbook: <%= stock.pbook %></p>
+<p>Psales: <%= stock.psales %></p>
+<p>Market Cap: <%= stock.markcap %></p>
+<p>Ask: <%= stock.ask %></p>
+<p>Bid: <%= stock.bid %></p>
+<p>Shares: <%= stock.shares %></p>
+<p>PEG: <%= stock.peg %></p>
+<p>Book Value: <%= stock.book_value %></p>
+<p>Graham Number: <%= stock.graham_number %></p>
+
+<br>
+<% end %>

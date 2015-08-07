@@ -42,10 +42,10 @@ class StocksController < ApplicationController
 	end
 
 	def index
-    if !Stock.all[0] 
+    if !Stock.find(1)
       make_dict
     end
-    if Stock.all[0].ticker
+    if !Stock.find(1).pe
       work
     end
 

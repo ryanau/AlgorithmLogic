@@ -4,6 +4,18 @@ require 'HTTParty'
 
 
 class StocksController < ApplicationController
+    def recommendations
+        @winners = []
+        Stock.all.each do |i|
+            if !i.pe_v_ind.nil? && !i.pe.nil?
+                if (i.peg < i.peg_v_ind) && (i.eps > i.eps_v_ind)
+                    @winners << i
+                end
+            end
+        end
+        render 'recommendations'
+    end
+
 	def populate_data
         url = 'http://finance.yahoo.com/d/quotes.csv?s='
         connect = "&f="

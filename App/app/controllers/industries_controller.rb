@@ -34,5 +34,6 @@ class IndustriesController < ApplicationController
       Industry.create(name: name)
     end
   end
+
 end
 

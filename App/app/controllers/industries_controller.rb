@@ -12,6 +12,15 @@ class IndustriesController < ApplicationController
   def make_industry_averages
     Industry.all.each do |ind|
       ind.update_attributes(
+          eps:
+          pe:
+          pbook:
+          psales:
+          markcap:
+          peg:
+          book_value:
+          shares:
+          graham_number:
 
         )
     end

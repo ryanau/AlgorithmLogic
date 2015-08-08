@@ -47,28 +47,32 @@ def index
     if !Stock.find_by(id: 1)
       make_dict
   end
-  if !Stock.find_by(id: 1).pe
+  if !Stock.find_by(id: 2).pe
       populate_data
-      update_versus_index
+  else
+    update_versus_index
   end
   @stocks = Stock.all
   render 'index'
 end
 
 def update_versus_index
-    Stock.all.each do |symbol|
-        symbol.update_attributes(
-            eps_v_ind: symbol.eps - (Industry.find_by(name: symbol.industry)).eps,
-            pe_v_ind: symbol.pe - (Industry.find_by(name: symbol.industry)).pe,
-            pbook_v_ind: symbol.pbook - (Industry.find_by(name: symbol.industry)).pbook,
-            psales_v_ind: symbol.psales - (Industry.find_by(name: symbol.industry)).psales,
-            markcap_v_ind: symbol.markcap - (Industry.find_by(name: symbol.industry)).markcap,
-            peg_v_ind: symbol.peg - (Industry.find_by(name: symbol.industry)).peg,
-            graham_number_v_ind: symbol.graham_number - (Industry.find_by(name: symbol.industry)).graham_number,
-            shares_v_ind: symbol.shares - (Industry.find_by(name: symbol.industry)).shares,
-            book_value_v_ind: symbol.book_value - (Industry.find_by(name: symbol.industry)).book_value
-            )
+  Stock.all.each do |symbol|
+    if !Industry.find_by(name: symbol.industry).nil?
+      industry = Industry.find_by(name: symbol.industry)
+      symbol.update_attributes(
+        eps_v_ind: (symbol.eps - industry.eps).round(2),
+        pe_v_ind: (symbol.pe - industry.pe).round(2),
+        pbook_v_ind: (symbol.pbook - industry.pbook).round(2),
+        psales_v_ind: (symbol.psales - industry.psales).round(2),
+        markcap_v_ind: (symbol.markcap - industry.markcap).round(2),
+        peg_v_ind: (symbol.peg - industry.peg).round(2),
+        book_value_v_ind: (symbol.book_value - industry.book_value).round(2),
+        shares_v_ind: (symbol.shares - industry.shares).round(2),
+        graham_number_v_ind: (symbol.graham_number - industry.graham_number)
+        )
     end
+  end
 end
 
 def make_dict

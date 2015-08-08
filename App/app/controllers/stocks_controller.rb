@@ -5,7 +5,6 @@ require 'HTTParty'
 
 class StocksController < ApplicationController
 	def populate_data
-
         url = 'http://finance.yahoo.com/d/quotes.csv?s='
         connect = "&f="
         eps = "e"
@@ -18,7 +17,6 @@ class StocksController < ApplicationController
         bid = "b"
         book_value = "b4"
 
-
         Stock.all.each do |symbol|
           full_url = url + symbol.ticker + connect + eps + pe + pbook + psales + markcap + ask + bid + peg + book_value
           response = HTTParty.get(full_url)
@@ -28,7 +26,7 @@ class StocksController < ApplicationController
           shares = symbol.markcap/((symbol.ask + symbol.bid)/2)
 
           if symbol.eps >= 0 && symbol.book_value >= 0 && shares >= 0
-            gnum = Math.sqrt(22.5 * (symbol.eps * (symbol.book_value/shares)))
+            gnum = Math.sqrt(22.5 * symbol.eps * (symbol.book_value/shares))
         else
             gnum = 0
         end

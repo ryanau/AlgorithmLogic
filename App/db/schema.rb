@@ -40,15 +40,23 @@ ActiveRecord::Schema.define(version: 20150807230538) do
     t.float    "pbook"
     t.float    "psales"
     t.float    "markcap"
-    t.float    "beta"
     t.float    "ask"
     t.float    "bid"
     t.float    "peg"
     t.float    "graham_number"
     t.float    "shares"
     t.float    "book_value"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.float    "eps_v_ind"
+    t.float    "pe_v_ind"
+    t.float    "pbook_v_ind"
+    t.float    "psales_v_ind"
+    t.float    "markcap_v_ind"
+    t.float    "peg_v_ind"
+    t.float    "graham_number_v_ind"
+    t.float    "shares_v_ind"
+    t.float    "book_value_v_ind"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
 end

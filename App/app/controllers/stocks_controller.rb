@@ -21,7 +21,16 @@ class StocksController < ApplicationController
           full_url = url + symbol.ticker + connect + eps + pe + pbook + psales + markcap + ask + bid + peg + book_value
           response = HTTParty.get(full_url)
           parsed = CSV.parse(response)[0]
-          symbol.update_attributes(eps: parsed[0].to_f, pe: parsed[1].to_f, pbook: parsed[2].to_f, psales: parsed[3].to_f, markcap: parsed[4].to_f * 1000000000, ask: parsed[5].to_f, bid: parsed[6].to_f, peg: parsed[7].to_f, book_value: parsed[8].to_f * 1000000000)
+          symbol.update_attributes(eps: parsed[0].to_f,
+            pe: parsed[1].to_f,
+            pbook: parsed[2].to_f,
+            psales: parsed[3].to_f,
+            markcap: parsed[4].to_f * 1000000000,
+            ask: parsed[5].to_f,
+            bid: parsed[6].to_f,
+            peg: parsed[7].to_f,
+            book_value: parsed[8].to_f * 1000000000
+            )
 
           shares = symbol.markcap/((symbol.ask + symbol.bid)/2)
 
@@ -40,9 +49,26 @@ def index
   end
   if !Stock.find_by(id: 1).pe
       populate_data
+      update_versus_index
   end
   @stocks = Stock.all
   render 'index'
+end
+
+def update_versus_index
+    Stock.all.each do |symbol|
+        symbol.update_attributes(
+            eps_v_ind: symbol.eps - (Industry.find_by(name: symbol.industry)).eps,
+            pe_v_ind: symbol.pe - (Industry.find_by(name: symbol.industry)).pe,
+            pbook_v_ind: symbol.pbook - (Industry.find_by(name: symbol.industry)).pbook,
+            psales_v_ind: symbol.psales - (Industry.find_by(name: symbol.industry)).psales,
+            markcap_v_ind: symbol.markcap - (Industry.find_by(name: symbol.industry)).markcap,
+            peg_v_ind: symbol.peg - (Industry.find_by(name: symbol.industry)).peg,
+            graham_number_v_ind: symbol.graham_number - (Industry.find_by(name: symbol.industry)).graham_number,
+            shares_v_ind: symbol.shares - (Industry.find_by(name: symbol.industry)).shares,
+            book_value_v_ind: symbol.book_value - (Industry.find_by(name: symbol.industry)).book_value
+            )
+    end
 end
 
 def make_dict

@@ -1,1 +1,12 @@
-<p>IT WORKED!!!!!</p>
+<% @industries.each do |ind| %>
+<h3><%= ind.name %></h3>
+<p> EPS: <%= ind.eps %></p>
+<p> PE: <%= ind.pe %></p>
+<p> Price/book: <%= ind.pbook %></p>
+<p> Price/sales: <%= ind.psales %></p>
+<p> Market cap: <%= ind.markcap %></p>
+<p> PEG: <%= ind.peg %></p>
+<p> Book Value: <%= ind.book_value %></p>
+<p> Shares: <%= ind.shares %></p>
+<p> Graham Number: <%= ind.graham_number %></p>
+<% end %>

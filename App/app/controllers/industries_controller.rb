@@ -3,24 +3,25 @@ class IndustriesController < ApplicationController
     if !Industry.find_by(id: 1)
       make_dict
     end
-    if !Industry.find_by(id: 1).eps
-      make_industry_averages
-    end
+
+    make_industry_averages
+    @industries = Industry.where.not(pe: nil)
     render 'index'
   end
 
   def make_industry_averages
+
     Industry.all.each do |ind|
       ind.update_attributes(
-          eps:
-          pe:
-          pbook:
-          psales:
-          markcap:
-          peg:
-          book_value:
-          shares:
-          graham_number:
+          eps: Stock.where(industry: ind.name).average(:eps),
+          pe: Stock.where(industry: ind.name).average(:pe),
+          pbook: Stock.where(industry: ind.name).average(:pbook),
+          psales: Stock.where(industry: ind.name).average(:psales),
+          markcap: Stock.where(industry: ind.name).average(:markcap),
+          peg: Stock.where(industry: ind.name).average(:peg),
+          book_value: Stock.where(industry: ind.name).average(:book_value),
+          shares: Stock.where(industry: ind.name).average(:shares),
+          graham_number: Stock.where(industry: ind.name).average(:graham_number)
 
         )
     end

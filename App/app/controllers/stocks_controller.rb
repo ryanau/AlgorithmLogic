@@ -61,14 +61,14 @@ def update_versus_index
     if !Industry.find_by(name: symbol.industry).nil?
       industry = Industry.find_by(name: symbol.industry)
       symbol.update_attributes(
-        eps_v_ind: (symbol.eps - industry.eps).round(2),
-        pe_v_ind: (symbol.pe - industry.pe).round(2),
-        pbook_v_ind: (symbol.pbook - industry.pbook).round(2),
-        psales_v_ind: (symbol.psales - industry.psales).round(2),
-        markcap_v_ind: (symbol.markcap - industry.markcap).round(2),
-        peg_v_ind: (symbol.peg - industry.peg).round(2),
-        book_value_v_ind: (symbol.book_value - industry.book_value).round(2),
-        shares_v_ind: (symbol.shares - industry.shares).round(2),
+        eps_v_ind: (symbol.eps - industry.eps),
+        pe_v_ind: (symbol.pe - industry.pe),
+        pbook_v_ind: (symbol.pbook - industry.pbook),
+        psales_v_ind: (symbol.psales - industry.psales),
+        markcap_v_ind: (symbol.markcap - industry.markcap),
+        peg_v_ind: (symbol.peg - industry.peg),
+        book_value_v_ind: (symbol.book_value - industry.book_value),
+        shares_v_ind: (symbol.shares - industry.shares),
         graham_number_v_ind: (symbol.graham_number - industry.graham_number)
         )
     end

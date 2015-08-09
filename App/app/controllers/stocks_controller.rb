@@ -4,6 +4,8 @@ require 'HTTParty'
 
 
 class StocksController < ApplicationController
+  include StocksHelper
+
     def recommendations
         @winners = []
         Stock.all.each do |i|

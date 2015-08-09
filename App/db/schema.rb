@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20150807230538) do
     t.string   "ticker"
     t.string   "name"
     t.string   "industry"
+    t.integer  "asi_component"
     t.float    "eps"
     t.float    "pe"
     t.float    "pbook"

@@ -4,6 +4,8 @@ require 'HTTParty'
 
 
 class StocksController < ApplicationController
+  include StocksHelper
+
     def recommendations
         @winners = []
         Stock.all.each do |i|
@@ -92,7 +94,11 @@ def make_dict
 
         stocks.each do |i|
           j = i.split("+")
-          Stock.create(ticker: j[0], name: j[1], industry: j[2])
+          asi_component = asi_component_industry(j[2])
+          Stock.create(ticker: j[0],
+            name: j[1],
+            industry: j[2],
+            asi_component: asi_component)
       end
 
   end

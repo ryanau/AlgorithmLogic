@@ -10,7 +10,7 @@ class StocksController < ApplicationController
         @winners = []
         Stock.all.each do |i|
             if !i.pe_v_ind.nil? && !i.pe.nil?
-                if (i.peg < i.peg_v_ind) && (i.eps > i.eps_v_ind) && (i.graham_number > i.graham_number_v_ind) && (i.pe > i.pe_v_ind)
+                if (i.peg < i.peg_v_ind) && (i.eps > i.eps_v_ind) && (i.graham_number < i.bid) && (i.pe > i.pe_v_ind)
                     @winners << i
                 end
             end

@@ -242,6 +242,7 @@ module StocksHelper
             return 9
       else  #declie 10
             return 10
+      end
   end
 
 end
